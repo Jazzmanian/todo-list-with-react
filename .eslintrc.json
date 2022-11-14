@@ -15,10 +15,15 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "react-hooks", "prettier"],
+  "plugins": ["react", "react-hooks", "prettier", "jest"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "no-console": ["warn"],
+    "jest/prefer-expect-assertions": [
+      "error",
+      { "onlyFunctionsWithAsyncKeyword": true }
+    ]
   },
   "settings": {
     "react": {
