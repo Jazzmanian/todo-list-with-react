@@ -12,20 +12,22 @@ const TodoForm = (): JSX.Element => {
   const onClick = (): void => {
     setTodo('');
   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+    setTodo(e.target.value);
   return (
     <div>
       <div>
         <input
           type="text"
           value={todo}
-          onChange={(e) => setTodo(e.target.value)}
+          onChange={handleChange}
           placeholder="Enter your todo item"
           autoFocus
         />
         <button onClick={onClick}>Add Items</button>
         <label className="elements">
           {tasks.map((task) => (
-            <div key={task.id}>{task.name}</div>
+            <TodoItem key={task.id} task={task} />
           ))}
         </label>
       </div>
