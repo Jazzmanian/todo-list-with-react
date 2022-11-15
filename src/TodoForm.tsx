@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 
 const TodoForm = (): JSX.Element => {
   const [todo, setTodo] = useState('');
+  const tasks: Array<{ id: number; name: string }> = [
+    { id: 1, name: 'task 01' },
+    { id: 2, name: 'task 02' },
+  ];
 
   const onClick = (): void => {
     setTodo('');
@@ -17,6 +21,11 @@ const TodoForm = (): JSX.Element => {
           autoFocus
         />
         <button onClick={onClick}>Add Items</button>
+        <label className="elements">
+          {tasks.map((task) => (
+            <div key={task.id}>{task.name}</div>
+          ))}
+        </label>
       </div>
     </div>
   );
