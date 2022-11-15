@@ -1,38 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.complete {
+  text-decoration: line-through;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #141a2f;
+}
+.title {
   color: white;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 
-.App-link {
-  color: #61dafb;
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: auto;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  border: 0;
+  outline: 0;
+  padding: 5px;
+  border: solid 4px rgb(248, 91, 0);
+  background-color: #141a2f;
+  color: white;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.form button {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: rgb(248, 91, 0);
+  border: 0;
+  outline: 0;
+  color: white;
+  padding: 9px;
+}
+.elements {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.elements div {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem;
+  border-radius: 0.3rem;
+  background: hsla(186, 100%, 69%, 1);
+  color: rgb(255, 255, 255);
+  background: hsla(217, 100%, 50%, 1);
+
+  background: linear-gradient(
+    0deg,
+    hsla(217, 100%, 50%, 1) 0%,
+    hsla(186, 100%, 69%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    0deg,
+    hsla(217, 100%, 50%, 1) 0%,
+    hsla(186, 100%, 69%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    0deg,
+    hsla(217, 100%, 50%, 1) 0%,
+    hsla(186, 100%, 69%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0061FF", endColorstr="#60EFFF", GradientType=1 );
 }
