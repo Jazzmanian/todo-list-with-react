@@ -40,6 +40,7 @@ input {
   color: white;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
+  margin-left: 60px;
 }
 .form button {
   border-top-right-radius: 25px;
@@ -56,7 +57,7 @@ input {
   flex-direction: column;
   margin-top: 2rem;
 }
-.elements div {
+.todo-items {
   margin-left: 2rem;
   margin-right: 2rem;
   margin-top: 1rem;
@@ -88,4 +89,12 @@ input {
   );
 
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0061FF", endColorstr="#60EFFF", GradientType=1 );
+}
+.todo-items h4 {
+  padding-right: 10rem;
+}
+.todo-items button {
+  font-size: 120%;
+  background-color: inherit;
+  border: 0;
 }

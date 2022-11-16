@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
 import { ITask } from '../Interfaces';
+import { tasks } from '../Constants';
 
 const TodoForm = (): JSX.Element => {
   const [todo, setTodo] = useState('');
-  const tasks: ITask[] = [
-    { id: 1, name: 'task 01' },
-    { id: 2, name: 'task 02' },
-  ];
 
   const onClick = (): void => {
     setTodo('');
