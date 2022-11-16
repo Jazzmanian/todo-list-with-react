@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import TodoForm from './TodoForm';
+import './styles/App.css';
+import TodoForm from './components/TodoForm';
 
 const App = (): JSX.Element => {
   return (

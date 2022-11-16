@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
-import { ITask } from './Interfaces';
+import { ITask } from '../Interfaces';
 
 const TodoForm = (): JSX.Element => {
   const [todo, setTodo] = useState('');
@@ -26,7 +26,7 @@ const TodoForm = (): JSX.Element => {
         />
         <button onClick={onClick}>Add Items</button>
         <label className="elements">
-          {tasks.map((task) => (
+          {tasks.map((task: ITask) => (
             <TodoItem key={task.id} task={task} />
           ))}
         </label>
