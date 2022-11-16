@@ -17,6 +17,7 @@ const TodoForm = (): JSX.Element => {
         <input
           type="text"
           value={todo}
+          aria-label="todo-input"
           onChange={handleChange}
           placeholder="Enter your todo item"
           autoFocus
