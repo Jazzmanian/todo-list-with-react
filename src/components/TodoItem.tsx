@@ -7,7 +7,7 @@ interface TaskProps {
   task: ITask;
 }
 
-const TodoItem = ({ task }: TaskProps): JSX.Element => {
+const TodoItem: React.FC<TaskProps> = ({ task }: TaskProps) => {
   return (
     <div className="todo-items">
       <h4>{task.name}</h4>
