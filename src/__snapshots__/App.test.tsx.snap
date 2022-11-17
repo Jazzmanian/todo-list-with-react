@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App test should render the snapshot 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="title"
+  >
+    Todo List
+  </h1>
+  <div
+    className="form"
+  >
+    <div>
+      <div>
+        <input
+          aria-label="todo-input"
+          autoFocus={true}
+          onChange={[Function]}
+          placeholder="Enter your todo item"
+          type="text"
+          value=""
+        />
+        <button
+          onClick={[Function]}
+        >
+          Add Items
+        </button>
+        <label
+          className="todo-tasks-container"
+        >
+          <div
+            className="todo-items"
+          >
+            <h4>
+              task 01
+            </h4>
+            <button>
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z"
+                />
+              </svg>
+            </button>
+            <button>
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 1024 1024"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            className="todo-items"
+          >
+            <h4>
+              task 02
+            </h4>
+            <button>
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z"
+                />
+              </svg>
+            </button>
+            <button>
+              <svg
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                strokeWidth="0"
+                style={
+                  Object {
+                    "color": undefined,
+                  }
+                }
+                viewBox="0 0 1024 1024"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0 0 51.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"
+                />
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                />
+              </svg>
+            </button>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+`;
