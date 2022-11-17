@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 
-const App = (): JSX.Element => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <h1 className="title">Todo List</h1>
