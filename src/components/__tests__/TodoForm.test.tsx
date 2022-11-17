@@ -29,4 +29,11 @@ describe('TodoForm', () => {
     fireEvent.change(input, { target: { value: 'abc' } });
     expect((input as HTMLInputElement).value).toBe('abc');
   });
+
+  it('should add tasks', () => {
+    const input = render(<TodoForm />).getByLabelText('todo-input');
+    userEvent.type(input, 'task 03');
+    fireEvent.click(screen.getByText(/add items/i));
+    expect(screen.getByLabelText(/task 03/i)).toBeInTheDocument();
+  });
 });
