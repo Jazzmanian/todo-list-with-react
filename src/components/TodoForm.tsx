@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 import { ITask } from '../Interfaces';
 import { tasks } from '../Constants';
 
-const TodoForm = (): JSX.Element => {
+const TodoForm: React.FC = () => {
   const [todo, setTodo] = useState('');
 
   const onClick = (): void => {
