@@ -24,15 +24,8 @@ describe('TodoForm', () => {
   });
 
   it('should handle onChange', () => {
-    const setup = () => {
-      const utils = render(<TodoForm />);
-      const input = utils.getByLabelText('todo-input');
-      return {
-        input,
-        ...utils,
-      };
-    };
-    const { input } = setup();
+    const utils = render(<TodoForm />);
+    const input = utils.getByLabelText('todo-input');
     fireEvent.change(input, { target: { value: 'abc' } });
     expect((input as HTMLInputElement).value).toBe('abc');
   });

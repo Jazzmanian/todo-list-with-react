@@ -23,7 +23,8 @@
     "jest/prefer-expect-assertions": [
       "error",
       { "onlyFunctionsWithAsyncKeyword": true }
-    ]
+    ],
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {
