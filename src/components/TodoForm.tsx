@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
-import { ITask } from '../Interfaces';
-import { tasks } from '../Constants';
+import { ITask } from '../interfaces';
+import { tasks } from '../constants';
 
 const TodoForm: React.FC = () => {
   const [todo, setTodo] = useState('');
