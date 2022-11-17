@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
 import { ITask } from '../interfaces';
-import { tasks } from '../constants';
 
 const TodoForm: React.FC = () => {
   const [todo, setTodo] = useState('');
+  const [taskList, setTaskList] = useState<ITask[]>([]);
+
+  let id = 1;
+  if (taskList.length > 0) {
+    id = taskList.length + 1;
+  }
+
+  const newTask = {
+    id,
+    name: todo,
+    completed: false,
+  };
 
   const onClick = (): void => {
     setTodo('');
+    setTaskList(() => [newTask, ...taskList]);
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setTodo(e.target.value);
@@ -24,7 +36,7 @@ const TodoForm: React.FC = () => {
         />
         <button onClick={onClick}>Add Items</button>
         <label className="todo-tasks-container">
-          {tasks.map((task: ITask) => (
+          {taskList.map((task: ITask) => (
             <TodoItem key={task.id} task={task} />
           ))}
         </label>
