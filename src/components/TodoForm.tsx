@@ -23,7 +23,7 @@ const TodoForm: React.FC = () => {
           autoFocus
         />
         <button onClick={onClick}>Add Items</button>
-        <label className="elements">
+        <label className="todo-tasks-container">
           {tasks.map((task: ITask) => (
             <TodoItem key={task.id} task={task} />
           ))}
