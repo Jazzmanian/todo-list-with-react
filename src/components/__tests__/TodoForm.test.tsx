@@ -16,11 +16,11 @@ describe('TodoForm', () => {
     expect(screen.getByText(/add items/i)).toBeInTheDocument();
   });
 
-  it('should handle onClick', () => {
-    render(<TodoForm />);
-    userEvent.type(screen.getByLabelText('todo-input'), 'abc');
+  it('should clear input when click the button', () => {
+    const input = render(<TodoForm />).getByLabelText('todo-input');
+    userEvent.type(input, 'abc');
     fireEvent.click(screen.getByText(/add items/i));
-    expect(screen.getByPlaceholderText('Enter your todo item')).toBeVisible();
+    expect((input as HTMLInputElement).value).toBe('');
   });
 
   it('should handle onChange', () => {
