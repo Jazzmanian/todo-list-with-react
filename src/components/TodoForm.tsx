@@ -10,7 +10,9 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }: TodoFormProps) => {
 
   const onClick = (): void => {
     setTodo('');
-    addTodo(todo);
+    if (todo.trim() !== '') {
+      addTodo(todo);
+    }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTodo(e.target.value);
