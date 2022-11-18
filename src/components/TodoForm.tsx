@@ -1,28 +1,20 @@
 import React, { useState } from 'react';
-import TodoItem from './TodoItem';
-import { ITask } from '../interfaces';
+import { AddTodo } from '../interfaces';
 
-const TodoForm: React.FC = () => {
+interface TodoFormProps {
+  addTodo: AddTodo;
+}
+
+const TodoForm: React.FC<TodoFormProps> = ({ addTodo }: TodoFormProps) => {
   const [todo, setTodo] = useState('');
-  const [taskList, setTaskList] = useState<ITask[]>([]);
-
-  let id = 1;
-  if (taskList.length > 0) {
-    id = taskList.length + 1;
-  }
-
-  const newTask = {
-    id,
-    name: todo,
-    completed: false,
-  };
 
   const onClick = (): void => {
     setTodo('');
-    setTaskList(() => [newTask, ...taskList]);
+    addTodo(todo);
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTodo(e.target.value);
+  };
   return (
     <div>
       <div>
@@ -35,11 +27,6 @@ const TodoForm: React.FC = () => {
           autoFocus
         />
         <button onClick={onClick}>Add Items</button>
-        <label className="todo-tasks-container">
-          {taskList.map((task: ITask) => (
-            <TodoItem key={task.id} task={task} />
-          ))}
-        </label>
       </div>
     </div>
   );
