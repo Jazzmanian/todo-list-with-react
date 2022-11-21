@@ -1,5 +1,5 @@
 import React from 'react';
-import { ITask } from '../interfaces';
+import { ITask } from '../types';
 import { MdDeleteOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 

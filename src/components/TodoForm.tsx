@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AddTodo } from '../interfaces';
+import { AddTodo } from '../types';
 
 interface TodoFormProps {
   addTodo: AddTodo;

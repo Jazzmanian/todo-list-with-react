@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
-import { ITask, AddTodo } from './interfaces';
+import { ITask, AddTodo } from './types';
 
 const App: React.FC = () => {
   const [taskList, setTaskList] = useState<ITask[]>([]);
