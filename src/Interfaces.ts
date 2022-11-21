@@ -4,6 +4,4 @@ export interface ITask {
   completed: boolean;
 }
 
-export interface AddTodo {
-  (newTodo: string): void;
-}
+export type AddTodo = (newTodo: string) => void;

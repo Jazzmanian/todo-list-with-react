@@ -2,15 +2,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import TodoForm from '../TodoForm';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { AddTodo } from '../../interfaces';
 
 describe('TodoForm', () => {
-  const mockTasks = () => {
-    [
-      { id: 1, name: 'task 01', completed: false },
-      { id: 2, name: 'task 02', completed: true },
-    ];
-  };
+  const mockTasks = (): void => {};
   it('should show input', () => {
     render(<TodoForm addTodo={mockTasks} />);
     expect(screen.getByLabelText('todo-input')).toBeInTheDocument();
