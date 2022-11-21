@@ -4,7 +4,10 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 describe('TodoForm', () => {
-  const mockTasks = (): void => {};
+  const mockTasks: jest.Mock = jest.fn();
+  beforeEach(() => {
+    mockTasks.mockReset();
+  });
   it('should show input', () => {
     render(<TodoForm addTodo={mockTasks} />);
     expect(screen.getByLabelText('todo-input')).toBeInTheDocument();
@@ -44,10 +47,9 @@ describe('TodoForm', () => {
   });
 
   it('should execute a callback function with the input value as an argument when the buttion is pressed', () => {
-    const callback = jest.fn();
-    render(<TodoForm addTodo={callback} />);
+    render(<TodoForm addTodo={mockTasks} />);
     userEvent.type(screen.getByRole('textbox'), 'task 01');
     fireEvent.click(screen.getByText(/add items/i));
-    expect(callback).toBeCalledTimes(1);
+    expect(mockTasks).toBeCalledTimes(1);
   });
 });
