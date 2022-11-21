@@ -5,7 +5,7 @@ interface TodoFormProps {
   addTodo: AddTodo;
 }
 
-const TodoForm: React.FC<TodoFormProps> = ({ addTodo }: TodoFormProps) => {
+const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const [todo, setTodo] = useState('');
 
   const onClick = (): void => {

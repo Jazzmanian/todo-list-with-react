@@ -6,7 +6,7 @@ interface TodoListProps {
   taskList: ITask[];
 }
 
-const TodoList: React.FC<TodoListProps> = ({ taskList }: TodoListProps) => {
+const TodoList: React.FC<TodoListProps> = ({ taskList }) => {
   return (
     <div>
       <label className="todo-tasks-container">
