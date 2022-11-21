@@ -48,4 +48,12 @@ describe('TodoForm', () => {
     fireEvent.click(screen.getByText(/add items/i));
     expect(screen.queryByDisplayValue(text)).not.toBeInTheDocument();
   });
+
+  it('should execute a callback function with the input value as an argument when the buttion is pressed', () => {
+    const callback = jest.fn();
+    render(<TodoForm addTodo={callback} />);
+    userEvent.type(screen.getByRole('textbox'), 'task 01');
+    fireEvent.click(screen.getByText(/add items/i));
+    expect(callback).toBeCalledTimes(1);
+  });
 });
