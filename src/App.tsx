@@ -8,17 +8,10 @@ const App: React.FC = () => {
   const [taskList, setTaskList] = useState<ITask[]>([]);
 
   const addTodo: AddTodo = (newTodo: string) => {
-    let id = 1;
-    if (taskList.length > 0) {
-      id = taskList.length + 1;
-    }
-    const newTask = {
-      id,
-      name: newTodo,
-      completed: false,
-    };
-
-    setTaskList([newTask, ...taskList]);
+    setTaskList((prevTaskList) => [
+      { id: prevTaskList.length + 1, name: newTodo, completed: false },
+      ...taskList,
+    ]);
   };
 
   return (
