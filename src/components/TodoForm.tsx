@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import TodoItem from './TodoItem';
-import { ITask } from '../interfaces';
-import { tasks } from '../constants';
+import { AddTodo } from '../types';
 
-const TodoForm: React.FC = () => {
+interface TodoFormProps {
+  addTodo: AddTodo;
+}
+
+const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const [todo, setTodo] = useState('');
 
   const onClick = (): void => {
     setTodo('');
+    if (todo.trim() !== '') {
+      addTodo(todo);
+    }
   };
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTodo(e.target.value);
+  };
   return (
     <div>
       <div>
@@ -23,11 +29,6 @@ const TodoForm: React.FC = () => {
           autoFocus
         />
         <button onClick={onClick}>Add Items</button>
-        <label className="todo-tasks-container">
-          {tasks.map((task: ITask) => (
-            <TodoItem key={task.id} task={task} />
-          ))}
-        </label>
       </div>
     </div>
   );
