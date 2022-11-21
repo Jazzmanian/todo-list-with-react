@@ -10,7 +10,7 @@ interface TaskProps {
 const TodoItem: React.FC<TaskProps> = ({ task }) => {
   return (
     <div className="todo-items">
-      <h4>{task.name}</h4>
+      <h4 data-testid={task.id}>{task.name}</h4>
       <button>
         <MdDeleteOutline />
       </button>
