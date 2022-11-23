@@ -30,7 +30,7 @@ exports[`App test should render the snapshot 1`] = `
       </div>
     </div>
     <div>
-      <label
+      <div
         className="todo-tasks-container"
       />
     </div>
