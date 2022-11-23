@@ -9,8 +9,8 @@ const App: React.FC = () => {
 
   const addTodo: AddTodo = (newTodo: string) => {
     setTaskList((prevTaskList) => [
-      { id: prevTaskList.length + 1, name: newTodo, completed: false },
-      ...taskList,
+      { id: Math.random(), name: newTodo, completed: false },
+      ...prevTaskList,
     ]);
   };
 

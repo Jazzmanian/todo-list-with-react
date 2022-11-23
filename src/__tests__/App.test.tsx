@@ -5,6 +5,10 @@ import '@testing-library/jest-dom';
 import renderer from 'react-test-renderer';
 import userEvent from '@testing-library/user-event';
 
+beforeEach(() => {
+  jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
+});
+
 describe('App test', () => {
   it('should render app', () => {
     render(<App />);
@@ -28,9 +32,6 @@ describe('App test', () => {
     const textInput = screen.getByRole('textbox');
     userEvent.type(textInput, 'task 01');
     userEvent.click(button);
-    userEvent.type(textInput, 'task 02');
-    userEvent.click(button);
-    expect(screen.getByTestId(1).textContent).toBe('task 01');
-    expect(screen.getByTestId(2).textContent).toBe('task 02');
+    expect(screen.getByTestId(0.5).textContent).toBe('task 01');
   });
 });
