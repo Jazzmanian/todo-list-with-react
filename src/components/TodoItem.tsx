@@ -15,7 +15,7 @@ const TodoItem: React.FC<TaskProps> = ({ task, handleDelete }) => {
   return (
     <div className="todo-items">
       <h4 data-testid={task.id}>{task.name}</h4>
-      <button onClick={onDelete}>
+      <button aria-label="delete-btn" onClick={onDelete}>
         <MdDeleteOutline />
       </button>
       <button>
