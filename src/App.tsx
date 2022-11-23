@@ -18,7 +18,6 @@ const App: React.FC = () => {
     setTaskList((prevTaskList) =>
       prevTaskList.filter((task) => task.id !== deleteId)
     );
-    // console.log(`delete ${deleteId}`);
   };
 
   return (

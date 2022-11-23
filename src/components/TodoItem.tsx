@@ -10,7 +10,6 @@ interface TaskProps {
 
 const TodoItem: React.FC<TaskProps> = ({ task, handleDelete }) => {
   const onDelete = (): void => {
-    console.log(`delete: ${task.id}`);
     handleDelete(task.id);
   };
   return (
