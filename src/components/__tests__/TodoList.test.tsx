@@ -2,6 +2,10 @@ import { render, screen } from '@testing-library/react';
 import TodoList from '../TodoList';
 
 describe('TodoList test', () => {
+  beforeEach(() => {
+    mockHandleDelete.mockReset();
+  });
+  const mockHandleDelete: jest.Mock = jest.fn();
   it('should render task list', () => {
     const mockTasks = [
       {
@@ -16,7 +20,7 @@ describe('TodoList test', () => {
       },
     ];
 
-    render(<TodoList taskList={mockTasks} />);
+    render(<TodoList taskList={mockTasks} handleDelete={mockHandleDelete} />);
     expect(screen.getByText('task01')).toBeInTheDocument();
     expect(screen.getByText('task02')).toBeInTheDocument();
   });
