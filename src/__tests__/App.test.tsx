@@ -34,4 +34,23 @@ describe('App test', () => {
     userEvent.click(button);
     expect(screen.getByTestId(0.5).textContent).toBe('task 01');
   });
+  it('should render the delete button', () => {
+    render(<App />);
+    const button = screen.getByText(/add items/i);
+    const textInput = screen.getByRole('textbox');
+    userEvent.type(textInput, 'task 01');
+    userEvent.click(button);
+    expect(screen.getByLabelText('delete-btn')).toBeInTheDocument();
+  });
+  it('should update state when an item is deleted by clicking the delete button', () => {
+    render(<App />);
+    const inputBtn = screen.getByText(/add items/i);
+    const textInput = screen.getByRole('textbox');
+    userEvent.type(textInput, 'task 01');
+    userEvent.click(inputBtn);
+    expect(screen.getByText('task 01')).toBeInTheDocument();
+    const deleteBtn = screen.getByLabelText('delete-btn');
+    userEvent.click(deleteBtn);
+    expect(screen.queryByDisplayValue('task 01')).not.toBeInTheDocument();
+  });
 });
