@@ -98,3 +98,8 @@ input {
   background-color: inherit;
   border: 0;
 }
+
+.complete {
+  text-decoration: line-through;
+  color: gray;
+}
