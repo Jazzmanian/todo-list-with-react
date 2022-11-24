@@ -7,7 +7,7 @@ import { ITask, AddTodo, HandleDelete } from './types';
 const App: React.FC = () => {
   const [taskList, setTaskList] = useState<ITask[]>([]);
 
-  const addTodo: AddTodo = (newTodo: string) => {
+  const addTodo: AddTodo = (newTodo) => {
     const generatedId = Math.random();
     setTaskList((prevTaskList) => [
       { id: generatedId, name: newTodo, completed: false },
@@ -15,7 +15,7 @@ const App: React.FC = () => {
     ]);
   };
 
-  const handleDelete: HandleDelete = (deleteId: number) => {
+  const handleDelete: HandleDelete = (deleteId) => {
     setTaskList((prevTaskList) =>
       prevTaskList.filter((task) => task.id !== deleteId)
     );
