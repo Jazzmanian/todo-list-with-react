@@ -6,3 +6,4 @@ export interface ITask {
 
 export type AddTodo = (newTodo: string) => void;
 export type HandleDelete = (id: number) => void;
+export type ToggleComplete = (id: number) => void;

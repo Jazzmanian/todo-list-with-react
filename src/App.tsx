@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
-import { ITask, AddTodo, HandleDelete } from './types';
+import { ITask, AddTodo, HandleDelete, ToggleComplete } from './types';
 
 const App: React.FC = () => {
   const [taskList, setTaskList] = useState<ITask[]>([]);
@@ -21,12 +21,26 @@ const App: React.FC = () => {
     );
   };
 
+  const toggleComplete: ToggleComplete = (selectedId) => {
+    const updatedTaskList = taskList.map((task) => {
+      if (task.id === selectedId) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    setTaskList(updatedTaskList);
+  };
+
   return (
     <div className="App">
       <h1 className="title">Todo List</h1>
       <div className="form">
         <TodoForm addTodo={addTodo} />
-        <TodoList taskList={taskList} handleDelete={handleDelete} />
+        <TodoList
+          taskList={taskList}
+          handleDelete={handleDelete}
+          toggleComplete={toggleComplete}
+        />
       </div>
     </div>
   );
