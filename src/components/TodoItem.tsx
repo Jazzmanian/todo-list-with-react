@@ -25,6 +25,7 @@ const TodoItem: React.FC<TaskProps> = ({
       <h4
         data-testid={task.id}
         aria-label={task.completed ? 'complete' : 'incomplete'}
+        className={task.completed ? 'complete' : 'incomplete'}
       >
         {task.name}
       </h4>
