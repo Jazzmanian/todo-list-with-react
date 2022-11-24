@@ -8,8 +8,9 @@ const App: React.FC = () => {
   const [taskList, setTaskList] = useState<ITask[]>([]);
 
   const addTodo: AddTodo = (newTodo: string) => {
+    const generatedId = Math.random();
     setTaskList((prevTaskList) => [
-      { id: Math.random(), name: newTodo, completed: false },
+      { id: generatedId, name: newTodo, completed: false },
       ...prevTaskList,
     ]);
   };
