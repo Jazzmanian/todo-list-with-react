@@ -1,19 +1,18 @@
 import React from 'react';
-import { ITask } from '../types';
+import { HandleDelete, ITask } from '../types';
 import TodoItem from './TodoItem';
 
 interface TodoListProps {
   taskList: ITask[];
+  handleDelete: HandleDelete;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ taskList }) => {
+const TodoList: React.FC<TodoListProps> = ({ taskList, handleDelete }) => {
   return (
-    <div>
-      <label className="todo-tasks-container">
-        {taskList.map((task: ITask) => (
-          <TodoItem key={task.id} task={task} />
-        ))}
-      </label>
+    <div className="todo-tasks-container">
+      {taskList.map((task: ITask) => (
+        <TodoItem key={task.id} task={task} handleDelete={handleDelete} />
+      ))}
     </div>
   );
 };
