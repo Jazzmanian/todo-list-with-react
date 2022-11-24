@@ -29,11 +29,9 @@ exports[`App test should render the snapshot 1`] = `
         </button>
       </div>
     </div>
-    <div>
-      <div
-        className="todo-tasks-container"
-      />
-    </div>
+    <div
+      className="todo-tasks-container"
+    />
   </div>
 </div>
 `;

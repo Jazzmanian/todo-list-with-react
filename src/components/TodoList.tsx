@@ -9,12 +9,10 @@ interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({ taskList, handleDelete }) => {
   return (
-    <div>
-      <div className="todo-tasks-container">
-        {taskList.map((task: ITask) => (
-          <TodoItem key={task.id} task={task} handleDelete={handleDelete} />
-        ))}
-      </div>
+    <div className="todo-tasks-container">
+      {taskList.map((task: ITask) => (
+        <TodoItem key={task.id} task={task} handleDelete={handleDelete} />
+      ))}
     </div>
   );
 };
