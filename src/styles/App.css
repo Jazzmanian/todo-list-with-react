@@ -57,7 +57,7 @@ input {
   flex-direction: column;
   margin-top: 2rem;
 }
-.todo-items {
+.todo-item {
   margin-left: 2rem;
   margin-right: 2rem;
   margin-top: 1rem;
@@ -90,11 +90,16 @@ input {
 
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0061FF", endColorstr="#60EFFF", GradientType=1 );
 }
-.todo-items h4 {
+.todo-item h4 {
   padding-right: 10rem;
 }
-.todo-items button {
+.todo-item button {
   font-size: 120%;
   background-color: inherit;
   border: 0;
+}
+
+.complete {
+  text-decoration: line-through;
+  color: gray;
 }
