@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { AddTodo, ITask } from '../types';
+import { AddTodo, HandleDelete, ITask } from '../types';
 
 interface APIBody {
   data: ITask[];
   loading: boolean;
   error: null;
   addTodo: AddTodo;
+  handleDelete: HandleDelete;
 }
 
 export const useFetch = (url: string): APIBody => {
@@ -26,6 +27,9 @@ export const useFetch = (url: string): APIBody => {
   const addTodo: AddTodo = (newTodo) => {
     setData([...data, newTodo]);
   };
+  const handleDelete: HandleDelete = (deleteId) => {
+    setData(data.filter((task) => task.id !== deleteId));
+  };
 
-  return { data, loading, error, addTodo };
+  return { data, loading, error, addTodo, handleDelete };
 };

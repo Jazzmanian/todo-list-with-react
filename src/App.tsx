@@ -2,18 +2,14 @@ import React, { useState } from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
-import { ITask, HandleDelete, ToggleComplete } from './types';
+import { ITask, ToggleComplete } from './types';
 import { useFetch } from './api/useFetch';
 
 const App: React.FC = () => {
-  const { data, addTodo } = useFetch('http://localhost:8080/tasks');
+  const { data, addTodo, handleDelete } = useFetch(
+    'http://localhost:8080/tasks'
+  );
   const [taskList, setTaskList] = useState<ITask[]>([]);
-
-  const handleDelete: HandleDelete = (deleteId) => {
-    setTaskList((prevTaskList) =>
-      prevTaskList.filter((task) => task.id !== deleteId)
-    );
-  };
 
   const toggleComplete: ToggleComplete = (selectedId) => {
     const updatedTaskList = taskList.map((task) => {
