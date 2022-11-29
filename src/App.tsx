@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import { ITask, AddTodo, HandleDelete, ToggleComplete } from './types';
+import axios from 'axios';
 
 const App: React.FC = () => {
   const [taskList, setTaskList] = useState<ITask[]>([]);
+  useEffect(() => {
+    axios
+      .get('http://localhost:8080/tasks')
+      .then((res) => res.data)
+      .then((data) => setTaskList(data))
+      .catch((error) => console.log(error));
+  }, []);
 
   const addTodo: AddTodo = (newTodo) => {
     const generatedId = Math.random();
@@ -30,6 +38,8 @@ const App: React.FC = () => {
     });
     setTaskList(updatedTaskList);
   };
+
+  console.log(taskList);
 
   return (
     <div className="App">
