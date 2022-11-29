@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { AddTodo, HandleDelete, ITask } from '../types';
+import { AddTodo, HandleDelete, ITask, ToggleComplete } from '../types';
 
 interface APIBody {
   data: ITask[];
@@ -8,6 +8,7 @@ interface APIBody {
   error: null;
   addTodo: AddTodo;
   handleDelete: HandleDelete;
+  toggleComplete: ToggleComplete;
 }
 
 export const useFetch = (url: string): APIBody => {
@@ -31,5 +32,15 @@ export const useFetch = (url: string): APIBody => {
     setData(data.filter((task) => task.id !== deleteId));
   };
 
-  return { data, loading, error, addTodo, handleDelete };
+  const toggleComplete: ToggleComplete = (selectedId) => {
+    const updatedTaskList = data.map((task) => {
+      if (task.id === selectedId) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    setData(updatedTaskList);
+  };
+
+  return { data, loading, error, addTodo, handleDelete, toggleComplete };
 };

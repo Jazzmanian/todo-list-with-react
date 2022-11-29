@@ -22,7 +22,13 @@ const TodoItem: React.FC<TaskProps> = ({
       .catch((error) => console.log(error));
   };
   const onCheck = (): void => {
-    toggleComplete(task.id);
+    axios
+      .put(`http://localhost:8080/tasks/${task.id}`, {
+        name: task.name,
+        completed: true,
+      })
+      .then(() => toggleComplete(task.id))
+      .catch((error) => console.log(error));
   };
   return (
     <div className="todo-item">
