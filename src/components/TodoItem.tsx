@@ -25,7 +25,7 @@ const TodoItem: React.FC<TaskProps> = ({
     axios
       .put(`http://localhost:8080/tasks/${task.id}`, {
         name: task.name,
-        completed: true,
+        completed: !task.completed,
       })
       .then(() => toggleComplete(task.id))
       .catch((error) => console.log(error));
