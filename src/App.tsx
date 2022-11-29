@@ -2,20 +2,12 @@ import React, { useState } from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
-import { ITask, AddTodo, HandleDelete, ToggleComplete } from './types';
-import useFetch from './api/useFetch';
+import { ITask, HandleDelete, ToggleComplete } from './types';
+import { useFetch } from './api/useFetch';
 
 const App: React.FC = () => {
-  const { data } = useFetch(' http://localhost:8080/tasks');
+  const { data, addTodo } = useFetch('http://localhost:8080/tasks');
   const [taskList, setTaskList] = useState<ITask[]>([]);
-
-  const addTodo: AddTodo = (newTodo) => {
-    const generatedId = Math.random();
-    setTaskList((prevTaskList) => [
-      { id: generatedId, name: newTodo, completed: false },
-      ...prevTaskList,
-    ]);
-  };
 
   const handleDelete: HandleDelete = (deleteId) => {
     setTaskList((prevTaskList) =>

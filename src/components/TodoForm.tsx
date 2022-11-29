@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { AddTodo } from '../types';
 
@@ -11,7 +12,14 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const onClick = (): void => {
     setTodo('');
     if (todo.trim() !== '') {
-      addTodo(todo);
+      axios
+        .post('http://localhost:8080/tasks', {
+          name: todo.trim(),
+          completed: false,
+        })
+        .then((response) => response.data)
+        .then((data) => addTodo(data))
+        .catch((error) => console.log(error));
     }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { ITask } from '../types';
+import { AddTodo, ITask } from '../types';
 
 interface APIBody {
   data: ITask[];
   loading: boolean;
   error: null;
+  addTodo: AddTodo;
 }
 
-const useFetch = (url: string): APIBody => {
+export const useFetch = (url: string): APIBody => {
   const [data, setData] = useState<ITask[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,7 +23,9 @@ const useFetch = (url: string): APIBody => {
       .finally(() => setLoading(false));
   }, [url]);
 
-  return { data, loading, error };
-};
+  const addTodo: AddTodo = (newTodo) => {
+    setData([...data, newTodo]);
+  };
 
-export default useFetch;
+  return { data, loading, error, addTodo };
+};
