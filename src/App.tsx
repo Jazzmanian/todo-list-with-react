@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
-import { useFetch } from './api/useFetch';
+import { useFetch } from './hooks/useFetch';
 
 const App: React.FC = () => {
   const { data, addTodo, handleDelete, toggleComplete } = useFetch(

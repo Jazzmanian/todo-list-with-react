@@ -4,7 +4,6 @@ import { AddTodo, HandleDelete, ITask, ToggleComplete } from '../types';
 
 interface APIBody {
   data: ITask[];
-  loading: boolean;
   error: null;
   addTodo: AddTodo;
   handleDelete: HandleDelete;
@@ -13,16 +12,13 @@ interface APIBody {
 
 export const useFetch = (url: string): APIBody => {
   const [data, setData] = useState<ITask[]>([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setLoading(true);
     axios
       .get(url)
       .then((res) => setData(res.data))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+      .catch((error) => setError(error));
   }, [url]);
 
   const addTodo: AddTodo = (newTodo) => {
@@ -42,5 +38,5 @@ export const useFetch = (url: string): APIBody => {
     setData(updatedTaskList);
   };
 
-  return { data, loading, error, addTodo, handleDelete, toggleComplete };
+  return { data, error, addTodo, handleDelete, toggleComplete };
 };
