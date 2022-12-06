@@ -19,7 +19,7 @@ export const useFetch = (url: string): APIBody => {
       .get(url)
       .then((res) => setData(res.data))
       .catch((error) => setError(error));
-  }, [url]);
+  }, []);
 
   const addTodo: AddTodo = (newTodo) => {
     setData([...data, newTodo]);
