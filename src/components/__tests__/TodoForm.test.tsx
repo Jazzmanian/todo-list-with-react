@@ -4,15 +4,12 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';
 
-jest.mock('axios'); //mock a module
+jest.mock('axios');
 describe('TodoForm', () => {
   const mockTasks: any = {
     name: 'task name',
     completed: true,
   };
-  // beforeEach(() => {
-  //   mockTasks.mockReset();
-  // });
   it('should show input', () => {
     render(<TodoForm addTodo={mockTasks} />);
     expect(screen.getByLabelText('todo-input')).toBeInTheDocument();

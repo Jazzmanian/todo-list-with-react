@@ -3,11 +3,6 @@ import App from '../App';
 import React from 'react';
 import '@testing-library/jest-dom';
 import renderer from 'react-test-renderer';
-import userEvent from '@testing-library/user-event';
-
-beforeEach(() => {
-  jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
-});
 
 describe('App test', () => {
   it('should render app', () => {

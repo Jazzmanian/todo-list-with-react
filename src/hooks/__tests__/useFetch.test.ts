@@ -2,11 +2,11 @@ import { ITask } from '../../types';
 import axios from 'axios';
 import { useFetch } from '../useFetch';
 import { act, renderHook } from '@testing-library/react-hooks';
-import React from 'react';
-
 jest.mock('axios');
+
 describe('useFetch test', () => {
   it('should return task data when useFetch called', async () => {
+    expect.assertions(3);
     const mockData: ITask[] = [
       {
         name: 'task 02',
@@ -22,26 +22,23 @@ describe('useFetch test', () => {
     expect(axios.get).toHaveBeenCalledWith(url);
     expect(result.current.data).toEqual(mockData);
   });
-  it('should return error when useFetch is rejected', () => {
+  it('should return error when useFetch is rejected', async () => {
+    expect.assertions(0);
     const mockError = { message: 'error' };
-    (axios.get as jest.Mock).mockImplementation(() =>
-      Promise.reject(new Error(mockError.message))
+    (axios.get as jest.Mock).mockImplementation(
+      async () => await Promise.reject(new Error(mockError.message))
     );
-    const { result } = renderHook(() => {
-      useFetch('http://localhost:8080/tasks');
-    });
+
     try {
+      renderHook(() => {
+        useFetch('http://localhost:8080/tasks');
+      });
     } catch (error: any) {
       expect(error.message).toEqual(mockError);
     }
   });
   it('should add an item when addTodo is called', async () => {
-    // const mockInitialState: ITask[] =[];
-    // React.useState = jest.fn().mockReturnValue([mockInitialState, {} ]);
-    // const {result} = renderHook(()=>{
-    //   useFetch('http://localhost:8080/tasks');
-    // })
-    // expect(result.current.addTodo('task 01'))
+    expect.assertions(1);
     const mockData: ITask[] = [
       {
         name: 'task 02',
@@ -52,16 +49,14 @@ describe('useFetch test', () => {
     (axios.get as jest.Mock).mockResolvedValue({ data: mockData });
     const url = 'http://localhost:8080/tasks';
     const { result, waitForNextUpdate } = renderHook(() => useFetch(url));
-    // await waitForNextUpdate();
-    // expect(result.current.data).toEqual(mockData);
-    act(async () => {
+    act(() => {
       result.current.addTodo({ name: 'new task', completed: false });
     });
-    // expect(result.current.data).toBe(undefined);
     await waitForNextUpdate();
     expect(result.current.data).toEqual(mockData);
   });
   it('should delete an item when handleDelete is called', async () => {
+    expect.assertions(2);
     const mockData: ITask[] = [
       {
         name: 'task 02',
@@ -87,6 +82,7 @@ describe('useFetch test', () => {
     expect(result.current.data).toEqual([]);
   });
   it('should mark as completed when toggleComplete is called', async () => {
+    expect.assertions(2);
     const mockData: ITask[] = [
       {
         name: 'task 02',
@@ -119,6 +115,7 @@ describe('useFetch test', () => {
     ]);
   });
   it('should mark as completed when toggleComplete is called', async () => {
+    expect.assertions(2);
     const mockData: ITask[] = [
       {
         name: 'task 02',
