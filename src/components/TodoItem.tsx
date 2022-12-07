@@ -2,7 +2,7 @@ import React from 'react';
 import { HandleDelete, ITask, ToggleComplete } from '../types';
 import { MdDeleteOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
-import axios from 'axios';
+import { deleteTask, putTask } from '../api/api';
 
 interface TaskProps {
   task: ITask;
@@ -16,17 +16,12 @@ const TodoItem: React.FC<TaskProps> = ({
   toggleComplete,
 }) => {
   const onDelete = (): void => {
-    axios
-      .delete(`http://localhost:8080/tasks/${task.id}`)
+    deleteTask(task.id)
       .then(() => handleDelete(task.id))
       .catch((error) => console.log(error));
   };
   const onCheck = (): void => {
-    axios
-      .put(`http://localhost:8080/tasks/${task.id}`, {
-        name: task.name,
-        completed: !task.completed,
-      })
+    putTask(task)
       .then(() => toggleComplete(task.id))
       .catch((error) => console.log(error));
   };

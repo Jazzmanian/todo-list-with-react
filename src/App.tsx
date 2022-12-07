@@ -2,10 +2,10 @@ import React from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
-import { useFetch } from './hooks/useFetch';
+import { useToggle } from './hooks/useToggle';
 
 const App: React.FC = () => {
-  const { data, addTodo, handleDelete, toggleComplete } = useFetch(
+  const { data, addTodo, handleDelete, toggleComplete } = useToggle(
     'http://localhost:8080/tasks'
   );
 

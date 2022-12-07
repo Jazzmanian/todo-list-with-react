@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { postTasks } from '../api/api';
 import { AddTodo } from '../types';
 
 interface TodoFormProps {
@@ -12,12 +12,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const onClick = (): void => {
     setTodo('');
     if (todo.trim() !== '') {
-      axios
-        .post('http://localhost:8080/tasks', {
-          name: todo.trim(),
-          completed: false,
-        })
-        .then((response) => response.data)
+      postTasks(todo)
         .then((data) => addTodo(data))
         .catch((error) => console.log(error));
     }

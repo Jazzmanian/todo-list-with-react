@@ -1,8 +1,10 @@
 import { screen, fireEvent, render } from '@testing-library/react';
 import axios from 'axios';
+import { deleteTask, putTask } from '../../api/api';
 import TodoItem from '../TodoItem';
 
 jest.mock('axios');
+jest.mock('../../api/api');
 describe('TodoItem test', () => {
   beforeEach(() => {
     mockHandleDelete.mockReset();
@@ -17,8 +19,8 @@ describe('TodoItem test', () => {
   };
 
   it('should call delete method with relevant task id', async () => {
-    expect.assertions(2);
-    (axios.delete as jest.Mock).mockResolvedValue(mockTask.id);
+    expect.assertions(1);
+    (deleteTask as jest.Mock).mockResolvedValue(mockTask.id);
     const url = 'http://localhost:8080/tasks';
     render(
       <TodoItem
@@ -30,12 +32,11 @@ describe('TodoItem test', () => {
     );
     await fireEvent.click(screen.getByLabelText('delete-btn'));
 
-    expect(axios.delete).toHaveBeenCalled();
-    expect(axios.delete).toHaveBeenCalledWith(`${url}/${mockTask.id}`);
+    expect(deleteTask).toHaveBeenCalled();
   });
   it('should call check method with relevant task id', async () => {
     expect.assertions(1);
-    (axios.put as jest.Mock).mockResolvedValue(mockTask.id);
+    (putTask as jest.Mock).mockResolvedValue(mockTask.id);
     render(
       <TodoItem
         key={mockTask.id}
@@ -46,12 +47,12 @@ describe('TodoItem test', () => {
     );
     await fireEvent.click(screen.getByLabelText('check-btn'));
 
-    expect(axios.put).toHaveBeenCalled();
+    expect(putTask).toHaveBeenCalled();
   });
   it('should return error when delete method is called', async () => {
     expect.assertions(0);
     const mockError = { message: 'error' };
-    (axios.delete as jest.Mock).mockImplementation(
+    (deleteTask as jest.Mock).mockImplementation(
       async () => await Promise.reject(new Error(mockError.message))
     );
     render(
@@ -71,7 +72,7 @@ describe('TodoItem test', () => {
   it('should return error when put method is called', async () => {
     expect.assertions(0);
     const mockError = { message: 'error' };
-    (axios.put as jest.Mock).mockImplementation(
+    (putTask as jest.Mock).mockImplementation(
       async () => await Promise.reject(new Error(mockError.message))
     );
     render(
