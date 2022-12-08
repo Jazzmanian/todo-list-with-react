@@ -2,12 +2,16 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import TodoForm from '../TodoForm';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
+import { postTasks } from '../../api';
+
+jest.mock('../../api/index');
 
 describe('TodoForm', () => {
-  const mockTasks: jest.Mock = jest.fn();
-  beforeEach(() => {
-    mockTasks.mockReset();
-  });
+  const mockTasks: any = {
+    name: 'task name',
+    completed: true,
+  };
+
   it('should show input', () => {
     render(<TodoForm addTodo={mockTasks} />);
     expect(screen.getByLabelText('todo-input')).toBeInTheDocument();
@@ -21,6 +25,7 @@ describe('TodoForm', () => {
   });
 
   it('should clear input when click the button', () => {
+    (postTasks as jest.Mock).mockResolvedValue(mockTasks);
     const input = render(<TodoForm addTodo={mockTasks} />).getByLabelText(
       'todo-input'
     );
@@ -47,9 +52,12 @@ describe('TodoForm', () => {
   });
 
   it('should execute a callback function with the input value as an argument when the buttion is pressed', () => {
+    (postTasks as jest.Mock).mockImplementation(
+      async () => await Promise.resolve(mockTasks.name)
+    );
     render(<TodoForm addTodo={mockTasks} />);
     userEvent.type(screen.getByRole('textbox'), 'task 01');
     fireEvent.click(screen.getByText(/add items/i));
-    expect(mockTasks).toBeCalledTimes(1);
+    expect(postTasks).toHaveBeenCalled();
   });
 });

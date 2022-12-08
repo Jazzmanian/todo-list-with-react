@@ -1,35 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './styles/App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
-import { ITask, AddTodo, HandleDelete, ToggleComplete } from './types';
+import { useToggle } from './hooks/useToggle';
 
 const App: React.FC = () => {
-  const [taskList, setTaskList] = useState<ITask[]>([]);
-
-  const addTodo: AddTodo = (newTodo) => {
-    const generatedId = Math.random();
-    setTaskList((prevTaskList) => [
-      { id: generatedId, name: newTodo, completed: false },
-      ...prevTaskList,
-    ]);
-  };
-
-  const handleDelete: HandleDelete = (deleteId) => {
-    setTaskList((prevTaskList) =>
-      prevTaskList.filter((task) => task.id !== deleteId)
-    );
-  };
-
-  const toggleComplete: ToggleComplete = (selectedId) => {
-    const updatedTaskList = taskList.map((task) => {
-      if (task.id === selectedId) {
-        return { ...task, completed: !task.completed };
-      }
-      return task;
-    });
-    setTaskList(updatedTaskList);
-  };
+  const { data, addTodo, handleDelete, toggleComplete } = useToggle();
 
   return (
     <div className="App">
@@ -37,7 +13,7 @@ const App: React.FC = () => {
       <div className="form">
         <TodoForm addTodo={addTodo} />
         <TodoList
-          taskList={taskList}
+          taskList={data}
           handleDelete={handleDelete}
           toggleComplete={toggleComplete}
         />

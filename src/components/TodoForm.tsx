@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { postTasks } from '../api';
 import { AddTodo } from '../types';
 
 interface TodoFormProps {
@@ -11,7 +12,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const onClick = (): void => {
     setTodo('');
     if (todo.trim() !== '') {
-      addTodo(todo);
+      postTasks(todo).then(addTodo).catch(console.log);
     }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
