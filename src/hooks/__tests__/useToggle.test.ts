@@ -1,11 +1,9 @@
 import { ITask } from '../../types';
-import axios from 'axios';
 import { useToggle } from '../useToggle';
 import { act, renderHook } from '@testing-library/react-hooks';
-import { getTasks } from '../../api/api';
-import { get } from 'https';
+import { getTasks } from '../../api';
 
-jest.mock('../../api/api');
+jest.mock('../../api/index');
 describe('useFetch test', () => {
   it('should return task data when useFetch called', async () => {
     expect.assertions(3);

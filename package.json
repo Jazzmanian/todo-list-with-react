@@ -32,7 +32,7 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
       "!src/index.tsx",
-      "!src/api/api.tsx"
+      "!src/api/index.tsx"
     ],
     "coverageThreshold": {
       "global": {

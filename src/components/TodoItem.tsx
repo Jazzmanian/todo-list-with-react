@@ -2,7 +2,7 @@ import React from 'react';
 import { HandleDelete, ITask, ToggleComplete } from '../types';
 import { MdDeleteOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
-import { deleteTask, putTask } from '../api/api';
+import { deleteTask, putTask } from '../api';
 
 interface TaskProps {
   task: ITask;

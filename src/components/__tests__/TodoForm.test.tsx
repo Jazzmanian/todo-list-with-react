@@ -2,9 +2,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import TodoForm from '../TodoForm';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { postTasks } from '../../api/api';
+import { postTasks } from '../../api';
 
-jest.mock('../../api/api');
+jest.mock('../../api/index');
 
 describe('TodoForm', () => {
   const mockTasks: any = {

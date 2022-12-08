@@ -5,27 +5,27 @@ const client = axios.create({
   baseURL: 'http://localhost:8080/tasks',
 });
 
-export async function getTasks(): Promise<any> {
+export const getTasks = async (): Promise<ITask> => {
   const res = await client.get('');
   return res.data;
-}
+};
 
-export async function deleteTask(id: number): Promise<any> {
+export const deleteTask = async (id: number): Promise<null> => {
   const res = await client.delete(`/${id}`);
   return res.data;
-}
+};
 
-export async function postTasks(todo: string): Promise<any> {
+export const postTasks = async (todo: string): Promise<ITask> => {
   const response = await client.post('', {
     name: todo.trim(),
     completed: false,
   });
   return response.data;
-}
-export async function putTask(task: ITask): Promise<any> {
+};
+export const putTask = async (task: ITask): Promise<ITask> => {
   const res = await client.put(`/${task.id}`, {
     name: task.name,
     completed: !task.completed,
   });
   return res.data;
-}
+};

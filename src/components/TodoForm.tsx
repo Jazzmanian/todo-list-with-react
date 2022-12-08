@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { postTasks } from '../api/api';
+import { postTasks } from '../api';
 import { AddTodo } from '../types';
 
 interface TodoFormProps {

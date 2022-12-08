@@ -1,10 +1,9 @@
 import { screen, fireEvent, render } from '@testing-library/react';
-import axios from 'axios';
-import { deleteTask, putTask } from '../../api/api';
+import { deleteTask, putTask } from '../../api';
 import TodoItem from '../TodoItem';
 
 jest.mock('axios');
-jest.mock('../../api/api');
+jest.mock('../../api/index');
 describe('TodoItem test', () => {
   beforeEach(() => {
     mockHandleDelete.mockReset();
@@ -21,7 +20,6 @@ describe('TodoItem test', () => {
   it('should call delete method with relevant task id', async () => {
     expect.assertions(1);
     (deleteTask as jest.Mock).mockResolvedValue(mockTask.id);
-    const url = 'http://localhost:8080/tasks';
     render(
       <TodoItem
         key={mockTask.id}
