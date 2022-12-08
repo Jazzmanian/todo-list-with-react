@@ -6,7 +6,7 @@ jest.mock('../../api/index');
 describe('useFetch test', () => {
   it('should fetch tasks', () => {
     (getTasks as jest.Mock).mockResolvedValue('');
-    renderHook(() => useFetch('http://localhost:8080/tasks'));
+    renderHook(() => useFetch());
     expect(getTasks).toBeCalled();
   });
 });

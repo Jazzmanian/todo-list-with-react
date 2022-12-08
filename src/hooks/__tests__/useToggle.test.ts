@@ -15,8 +15,7 @@ describe('useFetch test', () => {
       },
     ];
     (getTasks as jest.Mock).mockResolvedValue({ data: mockData });
-    const url = 'http://localhost:8080/tasks';
-    const { result, waitForNextUpdate } = renderHook(() => useToggle(url));
+    const { result, waitForNextUpdate } = renderHook(() => useToggle());
     await waitForNextUpdate();
     expect(getTasks).toHaveBeenCalledTimes(1);
     expect(getTasks).toHaveBeenCalledWith();
@@ -31,7 +30,7 @@ describe('useFetch test', () => {
 
     try {
       renderHook(() => {
-        useToggle('http://localhost:8080/tasks');
+        useToggle();
       });
     } catch (error: any) {
       expect(error.message).toEqual(mockError);
@@ -47,8 +46,7 @@ describe('useFetch test', () => {
       },
     ];
     (getTasks as jest.Mock).mockResolvedValue({ data: mockData });
-    const url = 'http://localhost:8080/tasks';
-    const { result, waitForNextUpdate } = renderHook(() => useToggle(url));
+    const { result, waitForNextUpdate } = renderHook(() => useToggle());
     act(() => {
       result.current.addTodo({ id: 2, name: 'new task', completed: false });
     });
@@ -65,9 +63,7 @@ describe('useFetch test', () => {
       },
     ];
     (getTasks as jest.Mock).mockResolvedValue({ data: mockData });
-    const { result, waitForNextUpdate } = renderHook(() =>
-      useToggle('http://localhost:8080/tasks')
-    );
+    const { result, waitForNextUpdate } = renderHook(() => useToggle());
     await waitForNextUpdate();
     expect(result.current.data).toEqual([
       {
@@ -91,9 +87,7 @@ describe('useFetch test', () => {
       },
     ];
     (getTasks as jest.Mock).mockResolvedValue({ data: mockData });
-    const { result, waitForNextUpdate } = renderHook(() =>
-      useToggle('http://localhost:8080/tasks')
-    );
+    const { result, waitForNextUpdate } = renderHook(() => useToggle());
     await waitForNextUpdate();
     expect(result.current.data).toEqual([
       {
@@ -124,9 +118,7 @@ describe('useFetch test', () => {
       },
     ];
     (getTasks as jest.Mock).mockResolvedValue({ data: mockData });
-    const { result, waitForNextUpdate } = renderHook(() =>
-      useToggle('http://localhost:8080/tasks')
-    );
+    const { result, waitForNextUpdate } = renderHook(() => useToggle());
     await waitForNextUpdate();
     expect(result.current.data).toEqual([
       {

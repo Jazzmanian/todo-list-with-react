@@ -9,8 +9,8 @@ interface APIBody {
   toggleComplete: ToggleComplete;
 }
 
-export const useToggle = (url: string): APIBody => {
-  const { data, setData, error } = useFetch(url);
+export const useToggle = (): APIBody => {
+  const { data, setData, error } = useFetch();
   const addTodo: AddTodo = (newTodo) => {
     setData([...data, newTodo]);
   };

@@ -4,11 +4,11 @@ import { ITask } from '../types';
 
 interface IgetBody {
   data: ITask[];
-  setData: any;
+  setData: React.Dispatch<React.SetStateAction<ITask[]>>;
   error: null;
 }
 
-export const useFetch = (url: string): IgetBody => {
+export const useFetch = (): IgetBody => {
   const [data, setData] = useState<ITask[]>([]);
   const [error, setError] = useState(null);
 
@@ -16,6 +16,6 @@ export const useFetch = (url: string): IgetBody => {
     getTasks()
       .then((res) => setData(res.data))
       .catch((error) => setError(error));
-  }, [url]);
+  }, []);
   return { data, setData, error };
 };

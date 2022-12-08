@@ -5,9 +5,7 @@ import TodoList from './components/TodoList';
 import { useToggle } from './hooks/useToggle';
 
 const App: React.FC = () => {
-  const { data, addTodo, handleDelete, toggleComplete } = useToggle(
-    'http://localhost:8080/tasks'
-  );
+  const { data, addTodo, handleDelete, toggleComplete } = useToggle();
 
   return (
     <div className="App">
