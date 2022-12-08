@@ -4,6 +4,6 @@ export interface ITask {
   completed: boolean;
 }
 
-export type AddTodo = (newTodo: any) => void;
+export type AddTodo = (newTodo: ITask) => void;
 export type HandleDelete = (id: number) => void;
 export type ToggleComplete = (id: number) => void;

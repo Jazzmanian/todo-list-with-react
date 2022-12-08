@@ -50,7 +50,7 @@ describe('useFetch test', () => {
     const url = 'http://localhost:8080/tasks';
     const { result, waitForNextUpdate } = renderHook(() => useToggle(url));
     act(() => {
-      result.current.addTodo({ name: 'new task', completed: false });
+      result.current.addTodo({ id: 2, name: 'new task', completed: false });
     });
     await waitForNextUpdate();
     expect(result.current.data).toEqual(mockData);
