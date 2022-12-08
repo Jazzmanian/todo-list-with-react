@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { getTasks } from '../api';
 import { ITask } from '../types';
 
-interface IgetBody {
+interface IGetBody {
   data: ITask[];
   setData: React.Dispatch<React.SetStateAction<ITask[]>>;
   error: null;
 }
 
-export const useFetch = (): IgetBody => {
+export const useFetch = (): IGetBody => {
   const [data, setData] = useState<ITask[]>([]);
   const [error, setError] = useState(null);
 
