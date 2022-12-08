@@ -2,10 +2,10 @@ import { ITask } from '../types';
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: 'http://localhost:8080/tasks',
+  baseURL: process.env.REACT_APP_BASEURL,
 });
 
-export const getTasks = async (): Promise<ITask> => {
+export const getTasks = async (): Promise<any> => {
   const res = await client.get('');
   return res.data;
 };
