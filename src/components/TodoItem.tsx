@@ -18,12 +18,12 @@ const TodoItem: React.FC<TaskProps> = ({
   const onDelete = (): void => {
     deleteTask(task.id)
       .then(() => handleDelete(task.id))
-      .catch((error) => console.log(error));
+      .catch(console.log);
   };
   const onCheck = (): void => {
     putTask(task)
       .then(() => toggleComplete(task.id))
-      .catch((error) => console.log(error));
+      .catch(console.log);
   };
   return (
     <div className="todo-item">
