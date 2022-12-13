@@ -2,36 +2,32 @@
 
 exports[`App test should render the snapshot 1`] = `
 <div
-  className="App"
+  className="sc-eDvSVe sc-pyfCe jSrjjn fvMWM"
 >
-  <h1
-    className="title"
-  >
-    Todo List
-  </h1>
-  <div
-    className="form"
-  >
-    <div>
-      <div>
-        <input
-          aria-label="todo-input"
-          autoFocus={true}
-          onChange={[Function]}
-          placeholder="Enter your todo item"
-          type="text"
-          value=""
-        />
-        <button
-          onClick={[Function]}
-        >
-          Add Items
-        </button>
-      </div>
-    </div>
-    <div
-      className="todo-tasks-container"
+  <div>
+    <h1
+      className="sc-gswNZR jSLNOy"
+    >
+      Todo List
+    </h1>
+    <input
+      aria-label="todo-input"
+      autoFocus={true}
+      className="sc-dkrFOg bQFNLL"
+      onChange={[Function]}
+      placeholder="Enter your todo item"
+      type="text"
+      value=""
     />
+    <button
+      className="sc-bcXHqe sc-hLBbgP htysNs hSIAgy"
+      onClick={[Function]}
+    >
+      Add Items
+    </button>
   </div>
+  <div
+    className="sc-eDvSVe sc-jSUZER jSrjjn gAoPZC"
+  />
 </div>
 `;
