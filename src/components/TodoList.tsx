@@ -1,5 +1,6 @@
 import React from 'react';
 import { HandleDelete, ITask, ToggleComplete } from '../types';
+import { TaskContainer } from './styles/Container.styles';
 import TodoItem from './TodoItem';
 
 interface TodoListProps {
@@ -14,7 +15,7 @@ const TodoList: React.FC<TodoListProps> = ({
   toggleComplete,
 }) => {
   return (
-    <div className="todo-tasks-container">
+    <TaskContainer>
       {taskList.map((task: ITask) => (
         <TodoItem
           key={task.id}
@@ -23,7 +24,7 @@ const TodoList: React.FC<TodoListProps> = ({
           toggleComplete={toggleComplete}
         />
       ))}
-    </div>
+    </TaskContainer>
   );
 };
 

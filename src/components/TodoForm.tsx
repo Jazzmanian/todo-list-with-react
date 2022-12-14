@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { postTasks } from '../api';
 import { AddTodo } from '../types';
+import { InputButton, StyledInput, StyledTitle } from './styles/Input.styles';
 
 interface TodoFormProps {
   addTodo: AddTodo;
@@ -20,17 +21,16 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   };
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          value={todo}
-          aria-label="todo-input"
-          onChange={handleChange}
-          placeholder="Enter your todo item"
-          autoFocus
-        />
-        <button onClick={onClick}>Add Items</button>
-      </div>
+      <StyledTitle>Todo List</StyledTitle>
+      <StyledInput
+        type="text"
+        value={todo}
+        aria-label="todo-input"
+        onChange={handleChange}
+        placeholder="Enter your todo item"
+        autoFocus
+      />
+      <InputButton onClick={onClick}>Add Items</InputButton>
     </div>
   );
 };

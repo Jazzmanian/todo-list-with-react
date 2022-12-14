@@ -3,6 +3,7 @@ import { HandleDelete, ITask, ToggleComplete } from '../types';
 import { MdDeleteOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { deleteTask, putTask } from '../api';
+import { ItemButton, StyledItem, StyledText } from './styles/Item.styles';
 
 interface TaskProps {
   task: ITask;
@@ -26,21 +27,15 @@ const TodoItem: React.FC<TaskProps> = ({
       .catch(console.log);
   };
   return (
-    <div className="todo-item">
-      <h4
-        data-testid={task.id}
-        aria-label={task.completed ? 'complete' : 'incomplete'}
-        className={task.completed ? 'complete' : 'incomplete'}
-      >
-        {task.name}
-      </h4>
-      <button aria-label="delete-btn" onClick={onDelete}>
+    <StyledItem completed={task.completed}>
+      <StyledText data-testid={task.id}>{task.name}</StyledText>
+      <ItemButton aria-label="delete-btn" onClick={onDelete}>
         <MdDeleteOutline />
-      </button>
-      <button aria-label="check-btn" onClick={onCheck}>
+      </ItemButton>
+      <ItemButton aria-label="check-btn" onClick={onCheck}>
         <AiOutlineCheckCircle />
-      </button>
-    </div>
+      </ItemButton>
+    </StyledItem>
   );
 };
 
