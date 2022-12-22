@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
-import { postTasks } from '../api';
+import { useTodos } from '../hooks/useTodos';
 import { InputButton, StyledInput, StyledTitle } from './styles/Input.styles';
 
 const TodoForm: React.FC = () => {
-  const queryClient = useQueryClient();
   const [todo, setTodo] = useState('');
-  const mutation = useMutation(postTasks, {
-    onSuccess: async () => {
-      await queryClient.invalidateQueries('todos');
-    },
-  });
+  const { addMutation } = useTodos();
 
   const onClick = (): void => {
     setTodo('');
     if (todo.trim() !== '') {
-      mutation.mutate(todo);
+      addMutation.mutate(todo);
     }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

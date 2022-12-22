@@ -1,12 +1,11 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import { getTasks } from '../api';
+import { useTodos } from '../hooks/useTodos';
 import { ITask } from '../types';
 import { TaskContainer } from './styles/Container.styles';
 import TodoItem from './TodoItem';
 
 const TodoList: React.FC = () => {
-  const { data: taskList } = useQuery('todos', getTasks);
+  const { data: taskList } = useTodos();
   return (
     <TaskContainer>
       {taskList?.map((task: ITask) => (
