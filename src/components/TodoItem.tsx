@@ -1,30 +1,32 @@
 import React from 'react';
-import { HandleDelete, ITask, ToggleComplete } from '../types';
+import { ITask } from '../types';
 import { MdDeleteOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { deleteTask, putTask } from '../api';
 import { ItemButton, StyledItem, StyledText } from './styles/Item.styles';
+import { useMutation, useQueryClient } from 'react-query';
 
 interface TaskProps {
   task: ITask;
-  handleDelete: HandleDelete;
-  toggleComplete: ToggleComplete;
 }
 
-const TodoItem: React.FC<TaskProps> = ({
-  task,
-  handleDelete,
-  toggleComplete,
-}) => {
+const TodoItem: React.FC<TaskProps> = ({ task }) => {
+  const queryClient = useQueryClient();
+  const deleteMutation = useMutation(deleteTask, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries('todos');
+    },
+  });
+  const checkMutation = useMutation(putTask, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries('todos');
+    },
+  });
   const onDelete = (): void => {
-    deleteTask(task.id)
-      .then(() => handleDelete(task.id))
-      .catch(console.log);
+    deleteMutation.mutate(task.id);
   };
   const onCheck = (): void => {
-    putTask(task)
-      .then(() => toggleComplete(task.id))
-      .catch(console.log);
+    checkMutation.mutate(task);
   };
   return (
     <StyledItem completed={task.completed}>
