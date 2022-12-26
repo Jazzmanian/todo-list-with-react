@@ -1,36 +1,16 @@
 import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import TodoList from '../TodoList';
 
 describe('TodoList test', () => {
-  beforeEach(() => {
-    mockHandleDelete.mockReset();
-    mockToggleComplete.mockReset();
-  });
-  const mockHandleDelete: jest.Mock = jest.fn();
-  const mockToggleComplete: jest.Mock = jest.fn();
-
-  it('should render task list', () => {
-    const mockTasks = [
-      {
-        id: 1,
-        name: 'task01',
-        completed: false,
-      },
-      {
-        id: 2,
-        name: 'task02',
-        completed: true,
-      },
-    ];
-
-    render(
-      <TodoList
-        taskList={mockTasks}
-        handleDelete={mockHandleDelete}
-        toggleComplete={mockToggleComplete}
-      />
+  it('should render task list when fetch the data', async () => {
+    const testQueryClient = new QueryClient();
+    const { ...result } = render(
+      <QueryClientProvider client={testQueryClient}>
+        <TodoList />
+      </QueryClientProvider>
     );
-    expect(screen.getByText('task01')).toBeInTheDocument();
-    expect(screen.getByText('task02')).toBeInTheDocument();
+    expect(await result.findByText(/task 01/i)).toBeInTheDocument();
   });
 });

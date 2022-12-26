@@ -1,16 +1,29 @@
-import { screen, fireEvent, render } from '@testing-library/react';
-import { deleteTask, putTask } from '../../api';
+import { screen, fireEvent, render, waitFor } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { useTodos } from '../../hooks/useTodos';
 import TodoItem from '../TodoItem';
 
-jest.mock('axios');
-jest.mock('../../api/index');
+const mockDeleteMutate = jest.fn();
+const mockCheckMutate = jest.fn();
+jest.mock('../../hooks/useTodos', () => ({
+  useTodos: () => ({
+    deleteMutation: () => ({ mutate: mockDeleteMutate }),
+    checkMutation: () => ({ mutate: mockCheckMutate }),
+  }),
+}));
+// jest.mock('react-query');
+// const mockedMutate = jest.fn();
+
+// jest.mock('../../hooks/useTodos', () => ({
+//   useTodos: () => ({
+//     deleteMutation: () => ({ mutate: jest.fn() }),
+//   }),
+// }));
+// const mockedUseCustomMutation = useTodos as jest.Mock;
+
+// expect(mockedMutate).toHaveBeenCalledTimes(1);
+
 describe('TodoItem test', () => {
-  beforeEach(() => {
-    mockHandleDelete.mockReset();
-    mockToggleComplete.mockReset();
-  });
-  const mockHandleDelete: jest.Mock = jest.fn();
-  const mockToggleComplete: jest.Mock = jest.fn();
   const mockTask = {
     id: 1,
     name: 'task name',
@@ -18,73 +31,18 @@ describe('TodoItem test', () => {
   };
 
   it('should call delete method with relevant task id', async () => {
-    expect.assertions(1);
-    (deleteTask as jest.Mock).mockResolvedValue(mockTask.id);
-    render(
-      <TodoItem
-        key={mockTask.id}
-        task={mockTask}
-        handleDelete={mockHandleDelete}
-        toggleComplete={mockToggleComplete}
-      />
-    );
+    render(<TodoItem key={mockTask.id} task={mockTask} />);
     await fireEvent.click(screen.getByLabelText('delete-btn'));
-
-    expect(deleteTask).toHaveBeenCalled();
+    // expect(screen.queryByDisplayValue('task name')).not.toBeInTheDocument();
+    expect(mockDeleteMutate).toHaveBeenCalled();
+    // await waitFor(() => {
+    //   expect(mockedUseCustomMutation().mutate.mock.calls.length).toBe(1);
+    // });
   });
+
   it('should call check method with relevant task id', async () => {
-    expect.assertions(1);
-    (putTask as jest.Mock).mockResolvedValue(mockTask.id);
-    render(
-      <TodoItem
-        key={mockTask.id}
-        task={mockTask}
-        handleDelete={mockHandleDelete}
-        toggleComplete={mockToggleComplete}
-      />
-    );
+    render(<TodoItem key={mockTask.id} task={mockTask} />);
     await fireEvent.click(screen.getByLabelText('check-btn'));
-
-    expect(putTask).toHaveBeenCalled();
-  });
-  it('should return error when delete method is called', async () => {
-    expect.assertions(0);
-    const mockError = { message: 'error' };
-    (deleteTask as jest.Mock).mockImplementation(
-      async () => await Promise.reject(new Error(mockError.message))
-    );
-    render(
-      <TodoItem
-        key={mockTask.id}
-        task={mockTask}
-        handleDelete={mockHandleDelete}
-        toggleComplete={mockToggleComplete}
-      />
-    );
-    try {
-      await fireEvent.click(screen.getByLabelText('delete-btn'));
-    } catch (error: any) {
-      expect(error.message).toEqual(mockError);
-    }
-  });
-  it('should return error when put method is called', async () => {
-    expect.assertions(0);
-    const mockError = { message: 'error' };
-    (putTask as jest.Mock).mockImplementation(
-      async () => await Promise.reject(new Error(mockError.message))
-    );
-    render(
-      <TodoItem
-        key={mockTask.id}
-        task={mockTask}
-        handleDelete={mockHandleDelete}
-        toggleComplete={mockToggleComplete}
-      />
-    );
-    try {
-      await fireEvent.click(screen.getByLabelText('check-btn'));
-    } catch (error: any) {
-      expect(error.message).toEqual(mockError);
-    }
+    expect(mockCheckMutate).toHaveBeenCalledTimes(1);
   });
 });
