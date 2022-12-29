@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
-import { postTasks } from '../api';
-import { AddTodo } from '../types';
+import { useTodos } from '../hooks/useTodos';
 import { InputButton, StyledInput, StyledTitle } from './styles/Input.styles';
 
-interface TodoFormProps {
-  addTodo: AddTodo;
-}
-
-const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
+const TodoForm: React.FC = () => {
   const [todo, setTodo] = useState('');
+  const { addMutation } = useTodos();
 
   const onClick = (): void => {
     setTodo('');
     if (todo.trim() !== '') {
-      postTasks(todo).then(addTodo).catch(console.log);
+      addMutation.mutate(todo);
     }
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

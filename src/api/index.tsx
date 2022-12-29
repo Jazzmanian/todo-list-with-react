@@ -5,8 +5,9 @@ const client = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
 
-export const getTasks = async (): Promise<AxiosResponse<ITask[]>> => {
-  return await client.get<ITask[]>('');
+export const getTasks = async (): Promise<ITask[]> => {
+  const res = await client.get<ITask[]>('');
+  return res.data;
 };
 
 export const deleteTask = async (id: number): Promise<AxiosResponse<void>> => {
